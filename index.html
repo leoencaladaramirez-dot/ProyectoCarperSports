@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarperSports | Tienda de Artículos Deportivos Oficial</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Barra de Anuncios Superior -->
+  <div class="announcement-bar">
+    <p>🚚 Envíos a todo el Ecuador | 🛡️ Garantía de fábrica | 💬 Atención inmediata por WhatsApp</p>
+  </div>
+
+  <!-- Header / Navbar con Logo Centrado -->
+  <header>
+    <div class="header-spacer"></div>
+    
+    <div class="logo-container">
+      <div class="logo-text">
+        <span class="brand-carper">CARPER</span>
+        <span class="brand-sports">SPORTS</span>
+      </div>
+    </div>
+
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Carrito
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </header>
+
+  <!-- Banner Hero Profesional -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">Equipamiento Deportivo Elite</span>
+      <h1>Eleva Tu Rendimiento Al <span>Máximo Nivel</span></h1>
+      <p>Venta de implementos deportivos al por mayor y menor. Envíos directos a todo el país con atención personalizada.</p>
+      
+      <!-- Buscador en Vivo -->
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Buscar balones, guantes, conos..." onkeyup="filtrarPorBusqueda()">
+        <span class="search-icon">🔍</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Badges de Confianza / Garantía -->
+  <section class="trust-badges">
+    <div class="badge-item">
+      <span>🛡️</span>
+      <div>
+        <strong>Productos Originales</strong>
+        <small>100% Calidad Garantizada</small>
+      </div>
+    </div>
+    <div class="badge-item">
+      <span>🚚</span>
+      <div>
+        <strong>Despacho Rápido</strong>
+        <small>Servientrega / Tramaco Express</small>
+      </div>
+    </div>
+    <div class="badge-item">
+      <span>💳</span>
+      <div>
+        <strong>Pago Seguro</strong>
+        <small>Transferencia y Depósitos</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filtro de Categorías -->
+  <div class="categories">
+    <button class="cat-btn active" onclick="filtrarProductos('Todos')">Todos</button>
+    <button class="cat-btn" onclick="filtrarProductos('Fútbol')">Fútbol</button>
+    <button class="cat-btn" onclick="filtrarProductos('Gimnasio')">Gimnasio</button>
+    <button class="cat-btn" onclick="filtrarProductos('Accesorios')">Accesorios</button>
+  </div>
+
+  <!-- Catálogo Principal -->
+  <main class="main-container">
+    <div class="products-grid" id="products-grid">
+      <!-- Carga dinámicamente desde script.js -->
+    </div>
+  </main>
+
+  <!-- Sección de Prueba Social / Testimonios -->
+  <section class="reviews-section">
+    <h2>Lo Que Dicen Nuestros Clientes ⚽</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Excelente calidad de los balones Mikasa FT-5. Llegaron a tiempo a Guayaquil por Servientrega."</p>
+        <strong>- Carlos M.</strong>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Súper recomendados. La atención por WhatsApp fue inmediata y los guantes de portero tienen un gran agarre."</p>
+        <strong>- Andrea R.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Ubicación y Contacto -->
+  <section class="location-section">
+    <div class="location-container">
+      <span class="location-tag">Visítanos o Escríbenos</span>
+      <h2>Atención y Tienda Física</h2>
+      
+      <div class="info-card">
+        <div class="info-item">
+          <span class="info-icon">📍</span>
+          <div>
+            <strong>Dirección:</strong><br>
+            Quito, Ecuador
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">🕒</span>
+          <div>
+            <strong>Horarios de Atención:</strong><br>
+            Lunes a Sábado: 09:00 AM - 07:00 PM
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">📱</span>
+          <div>
+            <strong>WhatsApp Oficial:</strong><br>
+            +593 99 884 0690
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=CarperSports+Quito" target="_blank" class="btn-map">
+          🗺️ Ver Ubicación en Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Deslizante del Carrito -->
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+  <aside class="cart-modal" id="cart-modal">
+    <div class="cart-header">
+      <h2>Tu Pedido</h2>
+      <button class="close-btn" onclick="toggleCart()">&times;</button>
+    </div>
+
+    <div class="cart-body" id="cart-items">
+      <p class="empty-cart-msg">Tu carrito está vacío ⚽</p>
+    </div>
+
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>Total:</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button class="checkout-btn" onclick="enviarAWhatsApp()">
+        💬 Comprar por WhatsApp
+      </button>
+    </div>
+  </aside>
+
+  <!-- Botón Flotante Directo de WhatsApp -->
+  <a href="https://wa.me/593998840690?text=Hola%20CarperSports,%20quisiera%20recibir%20información%20de%20sus%20productos." target="_blank" class="whatsapp-float" title="Contactar por WhatsApp">
+    💬
+  </a>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2026 CarperSports - Pasión por el Deporte. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
